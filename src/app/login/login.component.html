@@ -1,0 +1,43 @@
+<div class="grid md:grid-cols-2 gap-4 h-screen">
+    <div class="flex flex-col justify-center items-center px-6">
+        <img src="/SVG/mifugo.svg" alt="Logo" class="w-[150px]" />
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="w-full max-w-md mt-10">
+            <div class="flex flex-col mb-4">
+                <input type="email" formControlName="email" placeholder="Enter Email/Username"
+                    class="w-full p-2 rounded-sm border border-[#004910] text-[#80C342] text-md font-light" />
+                <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                    Invalid email.
+                </div>
+            </div>
+
+            <div class="flex flex-col mb-4">
+                <div class="relative">
+                    <input [type]="showPassword ? 'text' : 'password'" formControlName="password"
+                        placeholder="Enter Password"
+                        class="w-full p-2 rounded-sm border border-[#004910] text-[#80C342] text-md font-light pr-10" />
+                    <button type="button" (click)="togglePasswordVisibility()"
+                        class="absolute inset-y-0 right-0 px-3 flex items-center text-sm text-[#004910]">
+                        {{ showPassword ? 'Hide' : 'Show' }}
+                    </button>
+                </div>
+                <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                    Password is required.
+                </div>
+            </div>
+
+
+            <button type="submit" [disabled]="loginForm.invalid"
+                class="w-full bg-[#004910] cursor-pointer hover:bg-[#80C342]  text-white p-2 rounded-sm">Login</button>
+            <div class="flex justify-between mt-4">
+                <a routerLink="/forgot-password" class="text-[#004910] hover:text-[#80C342]">Forgot Password?</a>
+                <a routerLink="/register" class="text-[#004910] hover:text-[#80C342]">Create an account</a>
+            </div>
+        </form>
+    </div>
+    <div class="bg-[url('/livestock.jpg')] bg-cover bg-center h-full hidden md:block">
+        <div class="h-full flex items-end justify-end mb-10 rounded-xl">
+            <h1 class="bg-[#80C342] rounded-tl-2xl text-black fit-content opacity-100 font-bold px-10 py-4">Complete
+                livestock Care</h1>
+        </div>
+    </div>
+</div>
